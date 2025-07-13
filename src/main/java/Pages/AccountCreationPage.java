@@ -2,7 +2,12 @@ package Pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class AccountCreationPage {
     private WebDriver driver;
@@ -25,6 +30,7 @@ public class AccountCreationPage {
     private By registerButton  =By.id("submitAccount");
     private By signoutLink = By.className("logout");
     private By successMessage = By.cssSelector(".alert.alert-success");
+    private By ErrorMessage = By.cssSelector(".alert.alert-danger");
 
     //Use Locators
     public void selectTitle(String title) {
@@ -73,6 +79,10 @@ public class AccountCreationPage {
         return driver.findElement(signoutLink).isDisplayed();
     }
 
-
+    public boolean isValidationErrorApper() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebElement errorMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMessage));
+        return errorMessage.isDisplayed();
+    }
 
 }

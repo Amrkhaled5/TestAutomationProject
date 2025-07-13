@@ -26,7 +26,7 @@ public class RegisterTest extends BaseTest {
         loginPage = new LoginPage(driver);
         accountPage = new AccountCreationPage(driver);
 
-        int randomNum = random.nextInt(100000); // generates a number from 0 to 99999
+        int randomNum = random.nextInt(100000);
         email = "amr_" + randomNum + "@mail.com";
 
     }
@@ -60,9 +60,81 @@ public class RegisterTest extends BaseTest {
         homePage.clickSignOut();
         loginPage.creatAccountWithNewEmail(email);
         loginPage.clickCreateAccount();
-        Assert.assertTrue(loginPage.isAccountAleadyExistMessageDisplayed(), "Message did not shown for existing email.");
+        //need to wait in isErrorMessageDisplayed function
+        Assert.assertTrue(loginPage.isErrorMessageDisplayed(), "Expected error message for existing email was not displayed.");
     }
 
-    @Test(priority = 3, description = "Register using an already registered email")
+    @Test(priority = 3, description = "Registration with invalid email format")
+    public void testRegisterWithInvalidEmailFormat() {
+        homePage.goToHomepage();
+        homePage.clickSignIn();
+        loginPage.creatAccountWithNewEmail("email@");
+        loginPage.clickCreateAccount();
+        Assert.assertTrue(loginPage.isErrorMessageDisplayed(), "Error message should be displayed for invalid email");
+    }
+
+    @Test(priority = 4, description = "Registration with empty email")
+    public void testRegisterWithEmptyEmail() {
+        homePage.goToHomepage();
+        homePage.clickSignIn();
+        loginPage.creatAccountWithNewEmail("");
+        loginPage.clickCreateAccount();
+        Assert.assertTrue(loginPage.isErrorMessageDisplayed(), "Error message should be displayed for invalid email");
+    }
+
+    @Test(priority = 5, description = "Registration without put in all requird fields")
+    public void testAccountCreationWithMissingFields() {
+        int randomNum = random.nextInt(100000);
+        email = "amr_" + randomNum + "@ml.com";
+
+        homePage.goToHomepage();
+        homePage.clickSignIn();
+
+        loginPage.creatAccountWithNewEmail(email);
+        loginPage.clickCreateAccount();
+
+        accountPage.selectTitle("Mrs");
+        accountPage.enterFirstName("");
+        accountPage.enterLastName("");
+        accountPage.enterPassword(pass);
+        accountPage.selectDOB("","","");
+        accountPage.subscribeToNewsletter();
+        accountPage.clickRegister();
+
+        Assert.assertTrue(accountPage.isValidationErrorApper(),
+                "Validation error should be displayed for weak password");
+    }
+
+    @Test(priority = 6, description = "Registration with weak password")
+    public void testRegisterWithWeakPassword() {
+        int randomNum = random.nextInt(100000);
+        email = "amr_" + randomNum + "@mrl.com";
+
+        homePage.goToHomepage();
+        homePage.clickSignIn();
+
+        loginPage.creatAccountWithNewEmail(email);
+        loginPage.clickCreateAccount();
+
+        accountPage.selectTitle("Mr");
+        accountPage.enterFirstName("Amr");
+        accountPage.enterLastName("Khaled");
+        accountPage.enterPassword("123");
+        accountPage.selectDOB("3","3","2003");
+        accountPage.subscribeToNewsletter();
+        accountPage.clickRegister();
+
+        Assert.assertTrue(accountPage.isValidationErrorApper(),
+                "Validation error should be displayed for weak password");
+    }
+
+    @Test(priority = 7, description = "Registration with invalid Data")
+    public void testRegisterWithInvalidData() {
+        homePage.goToHomepage();
+        homePage.clickSignIn();
+        loginPage.creatAccountWithNewEmail("");
+        loginPage.clickCreateAccount();
+        Assert.assertTrue(loginPage.isErrorMessageDisplayed(), "Error message should be displayed for invalid email");
+    }
 
 }
