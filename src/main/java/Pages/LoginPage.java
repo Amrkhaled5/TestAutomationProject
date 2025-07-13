@@ -25,6 +25,7 @@ public class LoginPage {
     private By emailLoginInput =By.id("email");
     private By passwordLoginInput =By.id("passwd");
     private By signInButton =By.id("SubmitLogin");
+    private By ErrorMessage = By.cssSelector(".alert.alert-danger");
 
     //access locators for new Account
     public void creatAccountWithNewEmail(String email){
@@ -34,10 +35,16 @@ public class LoginPage {
         driver.findElement(createAccountButton).click();
     }
     public boolean isErrorMessageDisplayed() {
-
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        WebElement errorMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(accountAlreadyRegisterdMsg));
+        WebElement errorMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMessage));
         return errorMessage.isDisplayed();
+    }
+    public boolean isErrorMessageDisplayedCorrectError(String msg){
+        WebElement  msgBox=driver.findElement(ErrorMessage);
+        if(msgBox.getText().contains(msg)){
+            return true;
+        }
+        return false;
     }
 
     //access locators for login
@@ -46,4 +53,6 @@ public class LoginPage {
         driver.findElement(passwordLoginInput).sendKeys(password);
         driver.findElement(signInButton).click();
     }
+
+
 }
