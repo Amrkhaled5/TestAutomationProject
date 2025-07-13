@@ -58,11 +58,11 @@ public class RegisterTest extends BaseTest {
     @Test(priority = 2, description = "Register using an already registered email")
     public void testVerifySuccessAndLogout() {
         homePage.clickSignOut();
-
         loginPage.creatAccountWithNewEmail(email);
         loginPage.clickCreateAccount();
-
         Assert.assertTrue(loginPage.isAccountAleadyExistMessageDisplayed(), "Message did not shown for existing email.");
     }
+
+    @Test(priority = 3, description = "Register using an already registered email")
 
 }
