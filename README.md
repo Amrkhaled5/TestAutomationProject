@@ -27,14 +27,6 @@ AutomationPracticeTest/
 │               ├── RegisterTest.java
 │               └── LoginTest.java
 ```
-
-## Prerequisites
-
-- Java JDK 8+
-- Apache Maven 3.6+
-- ChromeDriver
-- IDE (IntelliJ IDEA, Eclipse, or VS Code)
-
 ## Test Cases
 
 ### Registration Tests
