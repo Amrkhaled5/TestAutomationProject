@@ -46,6 +46,6 @@ public class LoginTest extends BaseTest {
         loginPage.login(email, password);
 
         Assert.assertTrue(loginPage.isErrorMessageDisplayed(), "Error message should be displayed for invalid email");
-//        Assert.assertTrue(loginPage.isErrorMessageDisplayedCorrectError(expectedErrorMsg),"Error message do not reflect to the corret error");
+        Assert.assertTrue(loginPage.isErrorMessageDisplayedCorrectError(expectedErrorMsg),"Error message do not reflect to the corret error");
     }
 }
