@@ -47,7 +47,7 @@ Data-driven tests covering:
 - Missing email or password fields
 - Invalid email formats
 - Weak passwords
-
+- Check Error msg content 
 ## Page Object Model
 
 - **HomePage.java** - Navigation and sign-in/sign-out functionality
