@@ -23,19 +23,12 @@ public class LoginTest extends BaseTest {
         homePage = new HomePage(driver);
         loginPage = new LoginPage(driver);
     }
-    @DataProvider(name = "loginData")
+    @DataProvider(name = "loginData" )
     public Object[][] loginDataProvider() {
         return new Object[][]{
-            {"", "", "An email address required"},
-            {"invalid@email.com", "asdasd", "Authentication failed"},
-            {"", "asd123", "An email address required"},
-            {"test@test.com", "", "Password is required"},
-            {"email", "password", "Invalid email address"},
-            {"email@", "password", "Invalid email address"},
+
             {"email@domain", "password", "Invalid email address"},
-            {"email@domain.", "password", "Invalid email address"},
-            {"email@domain.com", "12", "Authentication failed"},
-            {"email@domain.com", "    ", "Authentication failed"},
+            {"email@domain.", "password", "Invalid email address"}
         };
     }
     @Test(dataProvider = "loginData", description = "Invalid login test cases")

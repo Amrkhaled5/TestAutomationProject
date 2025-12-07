@@ -17,15 +17,15 @@ public class LoginPage {
     }
 
     //Locators for create Account
-    private By newEmailInput=By.id("email_create");
-    private By createAccountButton=By.id("SubmitCreate");
-    private By accountAlreadyRegisterdMsg=By.id("create_account_error");
+    private final By newEmailInput=By.id("email_create");
+    private final By createAccountButton=By.id("SubmitCreate");
+    private final By accountAlreadyRegisterdMsg=By.id("create_account_error");
 
     //Locators for login
-    private By emailLoginInput =By.id("email");
-    private By passwordLoginInput =By.id("passwd");
-    private By signInButton =By.id("SubmitLogin");
-    private By ErrorMessage = By.cssSelector(".alert.alert-danger");
+    private final By emailLoginInput =By.id("email");
+    private final By passwordLoginInput =By.id("passwd");
+    private final By signInButton =By.id("SubmitLogin");
+    private final By ErrorMessage = By.cssSelector(".alert.alert-danger");
 
     //access locators for new Account
     public void creatAccountWithNewEmail(String email){

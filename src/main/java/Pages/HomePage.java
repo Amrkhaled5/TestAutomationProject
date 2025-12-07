@@ -5,9 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class HomePage {
-    private WebDriver driver;
-    private By signInLink = By.className("login");
-    private By signOutLink=By.className("logout");
+    private final WebDriver driver;
+    private final By signInLink = By.className("login");
+    private final By signOutLink=By.className("logout");
 
 
     public HomePage(WebDriver driver){
