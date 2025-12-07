@@ -72,6 +72,4 @@ public class RegisterTest extends BaseTest {
         loginPage.clickCreateAccount();
         Assert.assertTrue(loginPage.isErrorMessageDisplayed(), "Error message should be displayed for invalid email");
     }
-
-
 }

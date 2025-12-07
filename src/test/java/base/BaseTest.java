@@ -8,23 +8,25 @@ import java.time.Duration;
 
 public class BaseTest {
     protected WebDriver driver;
-
+    protected static ThreadLocal<WebDriver> threadDriver=new ThreadLocal<>();
     @BeforeClass(alwaysRun = true)
     public void setUp() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        threadDriver.set(driver);
+        getDriver().manage().window().maximize();
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     public WebDriver getDriver() {
-        return driver;
+        return threadDriver.get();
     }
 
     @AfterClass(alwaysRun = true)
     public void tearDown() {
-        if (driver != null) {
-            driver.quit();
+        if (getDriver() != null) {
+            getDriver().quit();
+            threadDriver.remove();
         }
     }
 }
