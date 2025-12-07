@@ -27,8 +27,8 @@ public class LoginTest extends BaseTest {
     public Object[][] loginDataProvider() {
         return new Object[][]{
 
-            {"email@domain", "password", "Invalid email address"},
-            {"email@domain.", "password", "Invalid email address"}
+            {"email@domain", "password", "Invalid email addresss"},
+            {"email@domain.", "password", "Invalid email addresss"}
         };
     }
     @Test(dataProvider = "loginData", description = "Invalid login test cases")

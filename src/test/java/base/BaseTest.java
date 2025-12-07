@@ -17,6 +17,10 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
+    public WebDriver getDriver() {
+        return driver;
+    }
+
     @AfterClass(alwaysRun = true)
     public void tearDown() {
         if (driver != null) {
