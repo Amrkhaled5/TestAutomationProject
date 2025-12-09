@@ -1,0 +1,16 @@
+2025-12-09 14:05:42 | INFO  | main                 | TestNG                         |  Execution Started 
+2025-12-09 14:05:42 | INFO  | main                 | Utils                          | [TestNG] Running:
+  E:\POM\TestAutomationProject\testng.xml
+
+2025-12-09 14:05:44 | INFO  | gisterAndLoginTest-2 | WebDriverManager               | Using chromedriver 139.0.7258.154 (resolved driver for Chrome 139)
+2025-12-09 14:05:44 | INFO  | gisterAndLoginTest-1 | WebDriverManager               | Using chromedriver 139.0.7258.154 (resolved driver for Chrome 139)
+2025-12-09 14:05:44 | INFO  | gisterAndLoginTest-1 | WebDriverManager               | Exporting webdriver.chrome.driver as C:\Users\Amrkh\.cache\selenium\chromedriver\win64\139.0.7258.154\chromedriver.exe
+2025-12-09 14:05:44 | INFO  | gisterAndLoginTest-2 | WebDriverManager               | Exporting webdriver.chrome.driver as C:\Users\Amrkh\.cache\selenium\chromedriver\win64\139.0.7258.154\chromedriver.exe
+2025-12-09 14:05:53 | ERROR | gisterAndLoginTest-1 | TestListenerHelper             | !!! Test Failed: testLoginInvalidData
+2025-12-09 14:05:53 | ERROR | gisterAndLoginTest-1 | TestListenerHelper             | Failure Reason: java.lang.AssertionError: Error message do not reflect to the corret error expected [true] but found [false]
+2025-12-09 14:05:55 | ERROR | gisterAndLoginTest-1 | TestListenerHelper             | !!! Test Failed: testLoginInvalidData
+2025-12-09 14:05:55 | ERROR | gisterAndLoginTest-1 | TestListenerHelper             | Failure Reason: java.lang.AssertionError: Error message do not reflect to the corret error expected [true] but found [false]
+2025-12-09 14:05:59 | INFO  | gisterAndLoginTest-2 | TestListenerHelper             | Test Successfully Passed: testRegisterNewUser
+2025-12-09 14:06:00 | INFO  | gisterAndLoginTest-2 | TestListenerHelper             | Test Successfully Passed: testVerifySuccessAndLogout
+2025-12-09 14:06:02 | INFO  | gisterAndLoginTest-2 | TestListenerHelper             | Test Successfully Passed: testRegisterWithInvalidEmailFormat
+2025-12-09 14:06:02 | INFO  | main                 | TestNG                         |  Execution finished 

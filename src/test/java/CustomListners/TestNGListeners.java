@@ -5,20 +5,35 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.testng.IInvokedMethod;
 import org.testng.*;
 
 import java.io.File;
 import java.io.IOException;
 
+import static org.example.LogUtils.logger;
+
 public class TestNGListeners implements ITestListener,IInvokedMethodListener,IExecutionListener//,IRetryAnalyzer
 {
 
+    private String getStatusName(int status) {
+        switch (status) {
+            case 1: return "SUCCESS";
+            case 2: return "FAILURE";
+            case 3: return "SKIP";
+            default: return "UNKNOWN";
+        }
+    }
+
     public void onTestSuccess(ITestResult result) {
-        System.out.println(result.getMethod().getMethodName()+" Passed");
+        logger().info("Test Successfully Passed: " + result.getName());
     }
 
     public void onTestFailure(ITestResult result) {
-        System.out.println(result.getMethod().getMethodName()+" failed");
+        logger().error("!!! Test Failed: " + result.getName());
+        logger().error("Failure Reason: " + result.getThrowable());
         // 1. Get the driver from the current test instance
         Object currentClass = result.getInstance();
         WebDriver driver = ((BaseTest) currentClass).getDriver();
@@ -41,23 +56,23 @@ public class TestNGListeners implements ITestListener,IInvokedMethodListener,IEx
     }
 
     public void onTestSkipped(ITestResult result) {
-        System.out.println(result.getMethod().getMethodName()+" Skipped");
-    }
+        logger().warn("Test Skipped: " + result.getName());    }
     ///////////////////////////////////////////////////////////////////////////////
     public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
-        System.out.println(method.getTestMethod().getMethodName()+" Started");
-    }
+        logger().debug("Invoking method: " + method.getTestMethod().getMethodName()
+                + " inside class: " + testResult.getTestClass().getName());    }
 
     public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
-        System.out.println(method.getTestMethod().getMethodName()+" Finished");
-    }
+        String status = getStatusName(testResult.getStatus());
+
+        logger().debug("Finished method: " + method.getTestMethod().getMethodName()
+                + " | Status: " + status);    }
     ///////////////////////////////////////////////////////////////////////////////
     public void onExecutionStart() {
-        System.out.println("OnExecutionStart");
-    }
+        logger().info(" Execution Started ");    }
 
     public void onExecutionFinish() {
-        System.out.println("OnExecutionStartEnd");
+        logger().info(" Execution finished ");
 
     }
     ///////////////////////////////////////////////////////////////////////////////
